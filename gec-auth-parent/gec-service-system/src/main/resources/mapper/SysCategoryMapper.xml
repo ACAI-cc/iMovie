@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gec.system.mapper.SysCategoryMapper">
+
+    <!--    autoMapping 开启驼峰命名的规则-->
+    <resultMap id="CategoryMap" type="com.gec.model.system.SysCategory" autoMapping="true">
+    </resultMap>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id,name,create_time,update_time,is_deleted
+    </sql>
+
+    <select id="selectPage" resultMap="CategoryMap">
+        select <include refid="columns" /> <!--此处使用抽取的公用列-->
+        from sys_category
+        <where>
+            <if test="vo.name != null and vo.name != ''">
+                <!--concat 拼接，MySQL的函数-->
+                and name like CONCAT('%',#{vo.name},'%')
+            </if>
+            and is_deleted = 0
+        </where>
+        order by id desc
+    </select>
+
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gec.system.mapper.SysRoleMapper">
+
+<!--    autoMapping 开启驼峰命名的规则-->
+    <resultMap id="RoleMap" type="com.gec.model.system.SysRole" autoMapping="true">
+    </resultMap>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id,role_name,role_code,description,create_time,update_time,is_deleted
+    </sql>
+
+    <select id="selectPage" resultMap="RoleMap">
+        select <include refid="columns" /> <!--此处使用抽取的公用列-->
+        from sys_role
+        <where>
+            <if test="vo.roleName != null and vo.roleName != ''">
+                <!--concat 拼接，MySQL的函数-->
+                and role_name like CONCAT('%',#{vo.roleName},'%')
+            </if>
+            and is_deleted = 0
+        </where>
+        order by id desc
+    </select>
+
+</mapper>

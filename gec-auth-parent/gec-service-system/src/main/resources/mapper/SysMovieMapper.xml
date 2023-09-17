@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gec.system.mapper.SysMovieMapper">
+
+    <!--    autoMapping 开启驼峰命名的规则-->
+    <resultMap id="MovieMap" type="com.gec.model.system.SysMovie" autoMapping="true">
+    </resultMap>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id,`name`,cid,description,keyword,director,actor,image,type,url,play_id,create_time,update_time,is_deleted
+    </sql>
+
+    <select id="selectPage" resultMap="MovieMap">
+        select <include refid="columns" />
+        from sys_movie
+        <where>
+            <if test="vo.name != null and vo.name != ''">
+                and `name` like CONCAT('%',#{vo.name},'%')
+            </if>
+            <if test="vo.cid!=null">
+                and cid = #{vo.cid}
+            </if>
+            and is_deleted = 0
+        </where>
+        order by id desc
+    </select>
+</mapper>

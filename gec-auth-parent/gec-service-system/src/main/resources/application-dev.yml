@@ -1,0 +1,47 @@
+server:
+  port: 8085
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 查看日志
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/gec-auth?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&userSSL=false
+    username: root
+    password: duoduo99347
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    timeout: 1800000
+    password:
+    jedis:
+      pool:
+        max-active: 20 #最大连接数
+        max-wait: -1    #最大阻塞等待时间(负数表示没限制)
+        max-idle: 5    #最大空闲
+        min-idle: 0     #最小空闲
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: 500MB
+
+  # 阿里配置
+  # 阿里配置
+al:
+  oss: #存储
+    endpoint: oss-cn-guangzhou.aliyuncs.com   # 域
+    accessKeyId: LTAI5tHyM4NbkBwZ8pXFuwGv  # 秘钥
+    accessKeySecret: HAOiTtu88237AYZrzJ9ciTUC4XGfFk # 秘钥
+    bucketName: training-movie  # 桶名
+    url: https://training-movie.oss-cn-guangzhou.aliyuncs.com  # 访问地址
+  vod: # 视频
+    regionId: cn-shanghai
+    accessKeyId: LTAI5tHyM4NbkBwZ8pXFuwGv
+    accessKeySecret: HAOiTtu88237AYZrzJ9ciTUC4XGfFk
