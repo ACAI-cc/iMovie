@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
  * 用户表 Mapper 接口
  * </p>
  *
- * @author dafei
+ * @author ACAI
  * @since 2023-06-18
  */
 @Repository

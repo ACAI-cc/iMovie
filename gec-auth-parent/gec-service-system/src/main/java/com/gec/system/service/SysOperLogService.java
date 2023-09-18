@@ -13,14 +13,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * 操作日志记录 服务类
  * </p>
  *
- * @author dafei
+ * @author ACAI
  * @since 2023-06-26
  */
 public interface SysOperLogService{
     //条件分页查询登录日志
     IPage<SysOperLog> selectPage(long page, long limit, SysOperLogQueryVo sysOperLogQueryVo);
-
-//    SysOperLog getById(Long id);
 
     void removeById(Long id);
 }

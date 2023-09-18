@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
  * 操作日志记录 Mapper 接口
  * </p>
  *
- * @author dafei
+ * @author ACAI
  * @since 2023-06-26
  */
 public interface SysOperLogMapper extends BaseMapper<SysOperLog> {

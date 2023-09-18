@@ -33,35 +33,10 @@ public class SysRoleController {
 
 
 
-//    // 查询全部记录
-//    @ApiOperation("查询全部接口")
-//    @GetMapping("/findAll")
-//    public List<SysRole> findAll()
-//    {
-//        List<SysRole> list = this.sysRoleService.list();
-//        return list;
-//    }
-//
-//    // 根据id 去逻辑删除
-//    @ApiOperation("逻辑删除接口")
-//    @DeleteMapping("/remove/{id}")
-//    public boolean removeRole(@PathVariable Long id)
-//    {
-//        boolean isSuccess = this.sysRoleService.removeById(id);
-//        return isSuccess;
-//    }
-//
-
     @ApiOperation("查询全部接口")
     @GetMapping("/findAll")
     public Result findAll()
     {
-//        try {
-//            int i = 1/0;
-//        } catch (Exception e) {
-//            // 手动抛出异常
-//            throw new MyCustomerException(2001,"自定义异常..");
-//        }
         List<SysRole> list = this.sysRoleService.list();
         return Result.ok(list);
     }

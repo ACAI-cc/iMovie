@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
  * 操作日志记录 前端控制器
  * </p>
  *
- * @author dafei
+ * @author ACAI
  * @since 2023-06-26
  */
 @RestController
@@ -40,12 +40,7 @@ public class SysOperLogController {
         return Result.ok(iPage);
     }
 
-//    @ApiOperation(value = "获取")
-//    @GetMapping("get/{id}")
-//    public Result get(@PathVariable Long id) {
-//        SysOperLog sysOperLog = sysOperLogService.getById(id);
-//        return Result.ok(sysOperLog);
-//    }
+
 
     @ApiOperation("根据id删除操作日志")
     // 测试删除

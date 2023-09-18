@@ -25,20 +25,6 @@ public class SysOperLogServiceImpl extends ServiceImpl<SysOperLogMapper, SysOper
     @Autowired
     private SysOperLogMapper sysOperLogMapper;
 
-//    @Override
-//    public void recordLoginLog(String username, Integer status, String ipaddr, String message) {
-//
-//        SysLoginLog sysLoginLog = new
-//                SysLoginLog();
-//        sysLoginLog.setUsername(username);
-//        sysLoginLog.setStatus(status);
-//        sysLoginLog.setIpaddr(ipaddr);
-//        sysLoginLog.setMsg(message);
-//
-//        this.sysLoginLogMapper.insert(sysLoginLog);
-//
-//    }
-
     @Override
     public IPage<SysOperLog> selectPage(long page, long limit, SysOperLogQueryVo sysOperLogQueryVo) {
         //创建page对象
@@ -63,10 +49,6 @@ public class SysOperLogServiceImpl extends ServiceImpl<SysOperLogMapper, SysOper
         return pageModel;
     }
 
-//    @Override
-//    public SysOperLog getById(Long id) {
-//        return this.sysOperLogMapper.selectById(id);
-//    }
 
     @Override
     public void removeById(Long id) {

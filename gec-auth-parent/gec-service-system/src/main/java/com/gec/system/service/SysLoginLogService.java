@@ -21,5 +21,4 @@ public interface SysLoginLogService extends IService<SysLoginLog> {
     //条件分页查询登录日志
     IPage<SysLoginLog> selectPage(long page, long limit, SysLoginLogQueryVo sysLoginLogQueryVo);
 
-//    SysLoginLog getById(Long id);
 }

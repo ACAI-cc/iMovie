@@ -25,20 +25,21 @@ public class SysCategoryController {
     @Autowired
     private SysCategoryService sysCategoryService;
 
-//    分页查询
+    //    分页查询
     @ApiOperation("角色分页查询")
     @GetMapping("/{page}/{limit}")
-    public Result findCategoryByPageQuery(@PathVariable Long page, @PathVariable Long limit, SysCategoryQueryVo sysCategoryQueryVo){
+    public Result findCategoryByPageQuery(@PathVariable Long page, @PathVariable Long limit, SysCategoryQueryVo sysCategoryQueryVo) {
 //        封装分页条件
-        IPage<SysCategory> page1 = new Page<>(page,limit);
+        IPage<SysCategory> page1 = new Page<>(page, limit);
 //        返回分页后的数据
         page1 = this.sysCategoryService.selectPage(page1, sysCategoryQueryVo);
 
         return Result.ok(page1);
     }
+
     @ApiOperation("获取全部分类")
     @GetMapping("/findAll")
-    public Result findAll(){
+    public Result findAll() {
         List<SysCategory> list = this.sysCategoryService.list();
         return Result.ok(list);
     }
@@ -49,15 +50,11 @@ public class SysCategoryController {
     @PreAuthorize("hasAuthority('btn.sysCategory.delete')")
 
     @DeleteMapping("/remove/{id}")
-    public Result removeRole(@PathVariable String id)
-    {
+    public Result removeRole(@PathVariable String id) {
         boolean isSuccess = this.sysCategoryService.removeById(id);
-        if (isSuccess)
-        {
+        if (isSuccess) {
             return Result.ok();
-        }
-        else
-        {
+        } else {
             return Result.fail();
         }
     }
@@ -67,15 +64,11 @@ public class SysCategoryController {
 
     @PreAuthorize("hasAuthority('btn.sysCategory.add')")
     @PostMapping("addCategory")
-    public Result addRole(@RequestBody SysCategory sysCategory)
-    {
+    public Result addRole(@RequestBody SysCategory sysCategory) {
         boolean isSuccess = this.sysCategoryService.save(sysCategory);
-        if (isSuccess)
-        {
+        if (isSuccess) {
             return Result.ok();
-        }
-        else
-        {
+        } else {
             return Result.fail();
         }
     }
@@ -84,8 +77,7 @@ public class SysCategoryController {
     // 根据id 去获取一个role
     @GetMapping("findCategoryById/{id}")
     @ApiOperation("根据id查询")
-    public Result findRoleById(@PathVariable String id)
-    {
+    public Result findRoleById(@PathVariable String id) {
         SysCategory sysCategory = this.sysCategoryService.getById(id);
         return Result.ok(sysCategory);
     }
@@ -94,15 +86,11 @@ public class SysCategoryController {
     // 修改
     @ApiOperation("修改角色")
     @PostMapping("updateCategory")
-    public Result updateRole(@RequestBody SysCategory sysCategory)
-    {
+    public Result updateRole(@RequestBody SysCategory sysCategory) {
         boolean isSuccess = this.sysCategoryService.updateById(sysCategory);
-        if (isSuccess)
-        {
+        if (isSuccess) {
             return Result.ok();
-        }
-        else
-        {
+        } else {
             return Result.fail();
         }
     }
@@ -112,15 +100,11 @@ public class SysCategoryController {
 
     @PreAuthorize("hasAuthority('btn.sysCategory.delete')")
     @DeleteMapping("batchRemove")
-    public Result batchRemove(@RequestBody List<String> ids)
-    {
+    public Result batchRemove(@RequestBody List<String> ids) {
         boolean isSuccess = this.sysCategoryService.removeByIds(ids);
-        if (isSuccess)
-        {
+        if (isSuccess) {
             return Result.ok();
-        }
-        else
-        {
+        } else {
             return Result.fail();
         }
     }

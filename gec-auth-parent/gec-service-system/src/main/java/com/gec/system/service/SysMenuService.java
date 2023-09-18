@@ -13,7 +13,7 @@ import java.util.List;
  * 菜单表 服务类
  * </p>
  *
- * @author duo
+ * @author ACAI
  * @since 2023-06-19
  */
 public interface SysMenuService extends IService<SysMenu> {

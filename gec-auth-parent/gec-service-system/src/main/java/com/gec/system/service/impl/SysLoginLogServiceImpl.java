@@ -56,9 +56,5 @@ public class SysLoginLogServiceImpl extends ServiceImpl<SysLoginLogMapper,SysLog
         IPage<SysLoginLog> pageModel = sysLoginLogMapper.selectPage(pageParam, wrapper);
         return pageModel;
     }
-//
-//    @Override
-//    public SysLoginLog getById(Long id) {
-//        return this.sysLoginLogMapper.selectById(id);
-//    }
+
 }

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
  *  Mapper 接口
  * </p>
  *
- * @author duo
+ * @author ACAI
  * @since 2023-06-20
  */
 @Repository

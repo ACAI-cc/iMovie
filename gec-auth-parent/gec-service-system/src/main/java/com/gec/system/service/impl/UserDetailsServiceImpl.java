@@ -34,7 +34,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if(sysUser.getStatus().intValue() == 0) {
             throw new RuntimeException("账号已停用");
         }
-//        return new CustomUser(sysUser, Collections.emptyList());
 
         List<String> userPermsList = sysMenuService.findUserPermsList(sysUser.getId());
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();

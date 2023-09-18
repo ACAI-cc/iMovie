@@ -13,7 +13,7 @@ import java.util.List;
  * 菜单表 Mapper 接口
  * </p>
  *
- * @author duo
+ * @author ACAI
  * @since 2023-06-19
  */
 @Repository

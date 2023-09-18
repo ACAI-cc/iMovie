@@ -12,7 +12,7 @@ import java.util.Map;
  * 用户表 服务类
  * </p>
  *
- * @author dafei
+ * @author ACAI
  * @since 2023-06-18
  */
 public interface SysUserService extends IService<SysUser> {

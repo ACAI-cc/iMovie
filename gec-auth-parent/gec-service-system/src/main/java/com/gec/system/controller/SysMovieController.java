@@ -124,7 +124,7 @@ public class SysMovieController {
 
         //1.根据id 获取 到 SysMovie
         SysMovie sysMovie = this.sysMovieService.getById(id);
-        System.out.println("-=-=-=-=" + sysMovie);
+
         //2. 从  SysMovie 中获取到 image  playId  Auth
         String image = sysMovie.getImage();
 
