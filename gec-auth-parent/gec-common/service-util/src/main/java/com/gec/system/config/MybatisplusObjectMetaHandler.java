@@ -8,7 +8,6 @@ import java.util.Date;
 
 
 // 做自动填充  工具类
-// mp 讲过 大家可以翻之前视频
 @Component
 public class MybatisplusObjectMetaHandler implements MetaObjectHandler {
 
