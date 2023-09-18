@@ -27,7 +27,6 @@ import java.util.Map;
  * <p>
  * 登录过滤器，继承UsernamePasswordAuthenticationFilter，对用户名密码进行登录校验
  * </p>
- *
  */
 public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -37,11 +36,11 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
     private SysLoginLogService sysLoginLogService;
 
     //    有参构造，把别的类中的 RedisTemplate 对象传递到当前对象中的RedisTemplate对象
-    public TokenLoginFilter(AuthenticationManager authenticationManager, RedisTemplate redisTemplate,SysLoginLogService sysLoginLogService) {
+    public TokenLoginFilter(AuthenticationManager authenticationManager, RedisTemplate redisTemplate, SysLoginLogService sysLoginLogService) {
         this.setAuthenticationManager(authenticationManager);
         this.setPostOnly(false);
         //指定登录接口及提交方式，可以指定任意路径
-        this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/admin/system/index/login","POST"));
+        this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/admin/system/index/login", "POST"));
         this.redisTemplate = redisTemplate;
         this.sysLoginLogService = sysLoginLogService;
 
@@ -49,6 +48,7 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
 
     /**
      * 登录认证
+     *
      * @param req
      * @param res
      * @return
@@ -70,6 +70,7 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
 
     /**
      * 登录成功
+     *
      * @param request
      * @param response
      * @param chain
@@ -81,13 +82,13 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
         CustomUser customUser = (CustomUser) auth.getPrincipal();
-        String token = JwtHelper.createToken(customUser.getSysUser().getId()+"", customUser.getSysUser().getUsername());
+        String token = JwtHelper.createToken(customUser.getSysUser().getId() + "", customUser.getSysUser().getUsername());
         //保存权限数据
         redisTemplate.opsForValue().set(customUser.getUsername(), JSON.toJSONString(customUser.getAuthorities()));
 
         // 记录成功的日志
 
-        sysLoginLogService.recordLoginLog(customUser.getUsername(),1, IpUtil.getIpAddress(request),"登录成功");
+        sysLoginLogService.recordLoginLog(customUser.getUsername(), 1, IpUtil.getIpAddress(request), "登录成功");
 
         Map<String, Object> map = new HashMap<>();
         map.put("token", token);
@@ -96,6 +97,7 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
 
     /**
      * 登录失败
+     *
      * @param request
      * @param response
      * @param e
@@ -106,7 +108,7 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                                               AuthenticationException e) throws IOException, ServletException {
 
-        if(e.getCause() instanceof RuntimeException) {
+        if (e.getCause() instanceof RuntimeException) {
             ResponseUtil.out(response, Result.build(null, 204, e.getMessage()));
         } else {
             ResponseUtil.out(response, Result.build(null, ResultCodeEnum.LOGIN_MOBLE_ERROR));

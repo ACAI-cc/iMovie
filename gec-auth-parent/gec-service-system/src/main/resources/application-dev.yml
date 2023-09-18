@@ -37,11 +37,11 @@ spring:
 al:
   oss: #存储
     endpoint: oss-cn-guangzhou.aliyuncs.com   # 域
-    accessKeyId: LTAI5tHyM4NbkBwZ8pXFuwGv  # 秘钥
-    accessKeySecret: HAOiTtu88237AYZrzJ9ciTUC4XGfFk # 秘钥
+    accessKeyId:  # 秘钥
+    accessKeySecret: # 秘钥
     bucketName: training-movie  # 桶名
     url: https://training-movie.oss-cn-guangzhou.aliyuncs.com  # 访问地址
   vod: # 视频
     regionId: cn-shanghai
-    accessKeyId: LTAI5tHyM4NbkBwZ8pXFuwGv
-    accessKeySecret: HAOiTtu88237AYZrzJ9ciTUC4XGfFk
+    accessKeyId: #
+    accessKeySecret: #

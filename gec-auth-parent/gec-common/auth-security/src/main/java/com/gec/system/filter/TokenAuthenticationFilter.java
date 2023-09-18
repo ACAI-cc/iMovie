@@ -37,23 +37,20 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     }
 
 
-
-
-
     // 过滤器 方法
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        logger.info("uri:"+request.getRequestURI());
+        logger.info("uri:" + request.getRequestURI());
 
         //如果是登录接口，直接放行
-        if("/admin/system/index/login".equals(request.getRequestURI())
-                ||"/admin/system/upload/uploadImage".equals(request.getRequestURI())
-                ||"/admin/system/upload/uploadVideo".equals(request.getRequestURI())
+        if ("/admin/system/index/login".equals(request.getRequestURI())
+                || "/admin/system/upload/uploadImage".equals(request.getRequestURI())
+                || "/admin/system/upload/uploadVideo".equals(request.getRequestURI())
                 || "/admin/system/sysMovie/getPlayAuth".equals(request.getRequestURI())
-                ||"/admin/system/sysMovie/findAll".equals(request.getRequestURI())
-                ||"/admin/system/sysMovie/selectPage".equals(request.getRequestURI())
-                ||"/admin/system/sysCategory/findAll".equals(request.getRequestURI())) {
+                || "/admin/system/sysMovie/findAll".equals(request.getRequestURI())
+                || "/admin/system/sysMovie/selectPage".equals(request.getRequestURI())
+                || "/admin/system/sysCategory/findAll".equals(request.getRequestURI())) {
             chain.doFilter(request, response);
             return;
         }
@@ -64,7 +61,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         // 获取认证 对象
         UsernamePasswordAuthenticationToken authentication = getAuthentication(request);
 
-        if(null != authentication) {
+        if (null != authentication) {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             chain.doFilter(request, response);
         } else {
@@ -76,7 +73,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
         // 1.从请求中 header 中 获取token
         String token = request.getHeader("token");
-        logger.info("token:"+token);
+        logger.info("token:" + token);
 
 
         // 2.判断token是否为null
@@ -85,7 +82,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             //3.当token不为null，就从token 中解析获取 到username
 
             String useruame = JwtHelper.getUsername(token);
-            logger.info("useruame:"+useruame);
+            logger.info("useruame:" + useruame);
 
             //4.如果 username 不为null
 
@@ -101,13 +98,11 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
                 List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
                 for (Map map : mapList) {
-                    authorities.add(new SimpleGrantedAuthority((String)map.get("authority")));
+                    authorities.add(new SimpleGrantedAuthority((String) map.get("authority")));
                 }
 
                 return new UsernamePasswordAuthenticationToken(useruame, null, authorities);
 
-
-                // return new UsernamePasswordAuthenticationToken(useruame, null, Collections.emptyList());
             }
         }
         return null;

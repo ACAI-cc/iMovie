@@ -7,11 +7,7 @@ import java.util.Date;
 
 
 /**
- * @author  大飞
- * @since  2019/03/12
- *
- *
- *   生成JSON Web令牌的工具类
+ * 生成JSON Web令牌的工具类
  */
 public class JwtHelper {
 
@@ -33,13 +29,8 @@ public class JwtHelper {
                 // 设置用户信息
                 .claim("userId", userId)
                 .claim("username", username)
-
-
-
                 // 使用什么加密算法 和什么秘钥
                 .signWith(SignatureAlgorithm.HS512, tokenSignKey)
-
-
                 //将生成 的 jwt 字符串 压缩 在一行显示
                 .compressWith(CompressionCodecs.GZIP)
                 // 连接起来 成一个 字符串 （拼接）
@@ -85,7 +76,6 @@ public class JwtHelper {
         //b. 从 token 中解密获取 userId
         String userId = JwtHelper.getUserId(token);
         System.out.println(userId);
-
 
 
         //c.从 token 中解密获取 username
